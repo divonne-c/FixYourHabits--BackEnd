@@ -28,9 +28,6 @@ public class UserProfileService {
     private UserRepository userRepository;
 
     @Autowired
-    private AdminRewardRepository adminRewardRepository;
-
-    @Autowired
     private FileUploadRepository uploadRepository;
 
     public List<UserProfileDto> getAllUsers() {
