@@ -17,6 +17,7 @@ public class AdminRewardController {
 
     @Autowired
     private AdminRewardService rewardservice;
+
     @GetMapping
     public ResponseEntity<List<AdminRewardDto>> getAllRewards() {
         return ResponseEntity.ok().body(rewardservice.getAllRewards());

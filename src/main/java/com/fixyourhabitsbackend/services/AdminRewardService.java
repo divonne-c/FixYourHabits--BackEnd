@@ -27,18 +27,26 @@ public class AdminRewardService {
 
         return adminRewardDtos;
     }
+
     public AdminRewardDto getRewardById(Long id) {
-        var reward = adminRewardRepository.findById(id);
+        Optional<AdminReward> reward = adminRewardRepository.findById(id);
         if (reward.isPresent()) {
             return fromReward(reward.get());
         } else {
             throw new RecordNotFoundException("AdminReward is not found");
         }
     }
+
     public AdminRewardDto createReward(AdminReward adminReward) {
-        final AdminReward savedAdminReward = adminRewardRepository.save(adminReward);
-        final AdminRewardDto adminRewardDto = fromReward(savedAdminReward);
-        return adminRewardDto;
+        Optional<AdminReward> findAdminReward = adminRewardRepository.findByName(adminReward.getName());
+
+        if (findAdminReward.isPresent()) {
+            throw new IllegalStateException("Admin reward name already exist.");
+        } else {
+            final AdminReward savedAdminReward = adminRewardRepository.save(adminReward);
+            final AdminRewardDto adminRewardDto = fromReward(savedAdminReward);
+            return adminRewardDto;
+        }
     }
 
     public void deleteReward(Long rewardId) {
@@ -49,6 +57,7 @@ public class AdminRewardService {
         }
         adminRewardRepository.deleteById(rewardId);
     }
+
     public AdminRewardDto updateReward(Long id, AdminReward adminReward) {
         Optional<AdminReward> rewardFound = adminRewardRepository.findById(id);
 
@@ -58,6 +67,7 @@ public class AdminRewardService {
             AdminReward newAdminReward = rewardFound.get();
             newAdminReward.setName(adminReward.getName());
             newAdminReward.setType(adminReward.getType());
+            newAdminReward.setDescription(adminReward.getDescription());
 
             adminRewardRepository.save(newAdminReward);
             return fromReward(newAdminReward);

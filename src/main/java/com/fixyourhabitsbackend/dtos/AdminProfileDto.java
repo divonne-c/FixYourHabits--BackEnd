@@ -10,9 +10,9 @@ import java.util.List;
 public class AdminProfileDto {
     private Long id;
     private User user;
-    private List<AdminHabit> adminHabits;
-    private List<AdminReward> adminRewards;
     FileUploadResponse file;
+    private List<AdminReward> adminRewards;
+    private List<AdminHabit> adminHabits;
 
     public Long getId() {
         return id;

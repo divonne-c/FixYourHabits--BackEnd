@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserService {
@@ -26,6 +25,9 @@ public class UserService {
 
     @Autowired
     private AdminProfileRepository adminProfileRepository;
+
+    @Autowired
+    private UserProfileService userProfileService;
 
     @Autowired
     private AdminProfileService adminProfileService;
@@ -54,7 +56,7 @@ public class UserService {
         Optional<User> findUser = userRepository.findById(userDto.getUsername());
        Optional<User> findEmail = userRepository.findUserByEmail(userDto.getEmail());
 
-        if (findUser.isPresent() && findEmail.isPresent()) {
+        if (findUser.isPresent() || findEmail.isPresent()) {
             throw new IllegalStateException("Username or email already in use");
         } else {
             String randomString = RandomStringGenerator.generateAlphaNumeric(20);
@@ -71,17 +73,24 @@ public class UserService {
     }
 
     public String createAdmin(UserDto userDto) {
-        String randomString = RandomStringGenerator.generateAlphaNumeric(20);
-        userDto.setApikey(randomString);
-        userDto.setEnabled(true);
-        User newUser = userRepository.save(toUser(userDto));
+        Optional<User> findUser = userRepository.findById(userDto.getUsername());
+        Optional<User> findEmail = userRepository.findUserByEmail(userDto.getEmail());
 
-        AdminProfile adminProfile = new AdminProfile();
+        if (findUser.isPresent() || findEmail.isPresent()) {
+            throw new IllegalStateException("Username or email already in use");
+        } else {
+            String randomString = RandomStringGenerator.generateAlphaNumeric(20);
+            userDto.setApikey(randomString);
+            userDto.setEnabled(true);
+            User newUser = userRepository.save(toUser(userDto));
 
-        adminProfile.setUser(newUser);
-        adminProfileRepository.save(adminProfile);
+            AdminProfile adminProfile = new AdminProfile();
 
-        return newUser.getUsername();
+            adminProfile.setUser(newUser);
+            adminProfileRepository.save(adminProfile);
+
+            return newUser.getUsername();
+        }
     }
 
     public void updateUser(String username, UserDto userDto) {
@@ -108,26 +117,14 @@ public class UserService {
         if (user.isEmpty()) {
             throw new UsernameNotFoundException(username);
         } else if (getUserProfile.isPresent()) {
-         UserProfile userProfile = getUserProfile.get();
-         List<UserHabit> userHabits = userProfile.getUserHabits();
-
-            for (UserHabit userHabit : userHabits) {
-                userProfile.removeHabit(userHabit);
-            }
-         
-        userRepository.deleteById(username);
+            userProfileService.deleteAllUserHabits(username);
+            userProfileService.deleteAllUserRewards(username);
+            userRepository.deleteById(username);
         } else {
             adminProfileService.deleteAllAdminHabits(username);
             adminProfileService.deleteAllAdminRewards(username);
             userRepository.deleteById(username);
         }
-    }
-
-    public Set<Authority> getAuthorities(String username) {
-        if (!userRepository.existsById(username)) throw new UsernameNotFoundException(username);
-        User user = userRepository.findById(username).get();
-        UserDto userDto = fromUser(user);
-        return userDto.getAuthorities();
     }
 
     public void addAuthority(String username, String authority) {
@@ -136,16 +133,6 @@ public class UserService {
         User user = userRepository.findById(username).get();
         user.addAuthority(new Authority(username, authority));
 
-        userRepository.save(user);
-    }
-
-    public void removeAuthority(String username, String authority) {
-        if (!userRepository.existsById(username)) throw new UsernameNotFoundException(username);
-
-        User user = userRepository.findById(username).get();
-        Authority authorityToRemove = user.getAuthorities().stream().filter((a) -> a.getAuthority().equalsIgnoreCase(authority)).findAny().get();
-
-        user.removeAuthority(authorityToRemove);
         userRepository.save(user);
     }
 
