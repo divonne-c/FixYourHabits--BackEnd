@@ -21,6 +21,7 @@ public class PhotoController {
 
     @Autowired
     private PhotoService service;
+
     @PostMapping("/upload")
     FileUploadResponse singleFileUpload(@RequestParam("file") MultipartFile file){
         String url = ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path(Objects.requireNonNull(file.getOriginalFilename())).toUriString();

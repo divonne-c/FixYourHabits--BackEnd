@@ -24,17 +24,16 @@ public class AdminProfileController {
     @Autowired
     private PhotoController photoController;
 
-
     @GetMapping
     @Transactional
     public ResponseEntity<List<AdminProfileDto>> getAllAdmins() {
         return ResponseEntity.ok().body(adminProfileService.getAllAdmins());
     }
 
-    @GetMapping("{adminname}")
+    @GetMapping("{username}")
     @Transactional
-    public ResponseEntity<AdminProfileDto> getAdminById(@PathVariable String adminname) {
-        AdminProfileDto getAdmin = adminProfileService.getAdminByUsername(adminname);
+    public ResponseEntity<AdminProfileDto> getAdminById(@PathVariable String username) {
+        AdminProfileDto getAdmin = adminProfileService.getAdminByUsername(username);
         return ResponseEntity.ok().body(getAdmin);
     }
 
@@ -44,7 +43,7 @@ public class AdminProfileController {
         return ResponseEntity.ok().body(adminHabits);
     }
 
-    @GetMapping("{username}/rewards")
+    @GetMapping("{username}/adminrewards")
     public ResponseEntity<List<AdminReward>> getAdminRewardsWithUserName(@PathVariable String username) {
         List<AdminReward> rewards = adminProfileService.getAdminRewards(username);
         return ResponseEntity.ok().body(rewards);
@@ -62,7 +61,7 @@ public class AdminProfileController {
         return ResponseEntity.noContent().build();
     }
 
-       @DeleteMapping("/{username}/adminrewards")
+    @DeleteMapping("/{username}/adminrewards")
     public ResponseEntity<Object> deleteAdminHabits(@PathVariable String username) {
         adminProfileService.deleteAllAdminRewards(username);
         return ResponseEntity.noContent().build();

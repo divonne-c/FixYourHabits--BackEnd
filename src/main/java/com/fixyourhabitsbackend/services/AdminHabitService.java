@@ -61,6 +61,7 @@ public class AdminHabitService {
             AdminHabit newAdminHabit = adminHabitFound.get();
             newAdminHabit.setName(adminHabit.getName());
             newAdminHabit.setType(adminHabit.getType());
+            newAdminHabit.setDescription(adminHabit.getDescription());
 
             adminHabitRepository.save(newAdminHabit);
             return fromAdminHabit(newAdminHabit);

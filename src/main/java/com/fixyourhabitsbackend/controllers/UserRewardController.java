@@ -35,10 +35,4 @@ public class UserRewardController {
         final URI location = URI.create("/rewards/" + rewards.getId());
         return ResponseEntity.created(location).body(rewards);
     }
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<UserReward> deleteReward(@PathVariable Long id) {
-        rewardservice.deleteReward(id);
-        return ResponseEntity.noContent().build();
-    }
 }

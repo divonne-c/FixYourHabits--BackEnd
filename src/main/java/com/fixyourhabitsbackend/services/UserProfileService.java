@@ -66,7 +66,7 @@ public class UserProfileService {
         Optional<UserProfile> getUserProfile = userProfileRepository.findUserProfileByUser_Username(username);
 
         if (getUserProfile.isEmpty()) {
-//            throw new org.springframework.security.core.userdetails.UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(username);
         } else {
 
             UserProfile userProfile = getUserProfile.get();
@@ -84,7 +84,7 @@ public class UserProfileService {
         Optional<UserProfile> getUserProfile = userProfileRepository.findUserProfileByUser_Username(username);
 
         if (getUserProfile.isEmpty()) {
-//            throw new org.springframework.security.core.userdetails.UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(username);
         } else {
 
             UserProfile userProfile = getUserProfile.get();

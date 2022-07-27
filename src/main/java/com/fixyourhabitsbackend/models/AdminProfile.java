@@ -25,12 +25,12 @@ public class AdminProfile {
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.EXTRA)
     @OneToMany(mappedBy = "adminProfile", cascade = CascadeType.MERGE)
-    private List<AdminHabit> adminHabits = new ArrayList<>();
+    private List<AdminReward> adminRewards = new ArrayList<>();
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.EXTRA)
     @OneToMany(mappedBy = "adminProfile", cascade = CascadeType.MERGE)
-    private List<AdminReward> adminRewards = new ArrayList<>();
+    private List<AdminHabit> adminHabits = new ArrayList<>();
 
     public Long getId() {
         return id;
