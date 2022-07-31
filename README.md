@@ -1,27 +1,27 @@
-#Fix Your Habits
+# Fix Your Habits
 
 ![screenshot page](readme%20assets/home.jpg)
 
-##Table of contents
+## Table of contents
 * [About the project](##About the Project)
 * [Getting Started](##Getting Started)
 
 
-##About the Project
+## About the Project
 Here you can find the Backend for my webapplication Fix Your Habits. It's a habit tracker where you can add, create, edit and delete habits. You can earn rewards for creating habits and discover all kinds of pre-made habits! 
 
 Take a look at the <a href="https://github.com/divonne-c/FixYourHabits--FrontEnd">Frontend</a> code of this project.
 
-##Getting Started
+## Getting Started
 To install this project and use it locally, you need to follow a few steps.
 
-###Prerequisites
+### Prerequisites
 * pg4Admin
 * PostgreSQL
 * Intellij
 * Postman (optional)
 
-###Installation
+### Installation
 
 1. Download and Install Pg4Admin, PostgreSQL, IntelliJ and Postman (optional).
 
