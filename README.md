@@ -3,8 +3,12 @@
 ![screenshot page](readme%20assets/home.jpg)
 
 ## Table of contents
-* [About the project](##About the Project)
-* [Getting Started](##Getting Started)
+* [About the Project](#about-the-project)
+* [Getting Started](#getting-started)
+    + [Prerequisites](#prerequisites)
+    + [Installation](#installation)
+* [Data for login](#data-for-login)
+
 
 
 ## About the Project
@@ -43,6 +47,16 @@ spring.datasource.password= password
 6. Click on ▶️ in the top right corner of IntelliJ to run the code.
 7. Test it in `postman`. Copy this link: https://www.getpostman.com/collections/9e14c41c46ff4aa8a20c and paste it in `import` in `Collections` to make the testing easier.
 
+
+## Data for login
+
+To test the webapplication, you need to authenticate by signing in or creating an account. Below you will see the dummy accounts to log in. Be aware that the username and password are both lowercase!
+
+
+| Role          | Username | Password |
+|---------------|:--------:|---------:|
+| User          |   user   | password |
+| Admin         |  admin   | password |
 
 
 
