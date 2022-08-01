@@ -25,9 +25,6 @@ class UserRewardServiceTest {
     @MockBean
     private UserRewardRepository userRewardRepository;
 
-    @MockBean
-    private UserProfileRepository userProfileRepository;
-
     @Test
     void getAllUserRewards() {
         userRewardService.getAllRewards();

@@ -25,9 +25,6 @@ class UserHabitServiceTest {
     @MockBean
     private UserHabitRepository userHabitRepository;
 
-    @MockBean
-    private UserProfileRepository userProfileRepository;
-
     @Test
     void getAllUserHabits() {
         userHabitService.getAllUserHabits();

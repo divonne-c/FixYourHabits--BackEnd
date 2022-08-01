@@ -18,9 +18,6 @@ public class UserRewardService {
     @Autowired
     private UserRewardRepository userRewardRepository;
 
-    @Autowired
-    private UserProfileRepository userProfileRepository;
-
     public List<UserRewardDto> getAllRewards() {
         List<UserRewardDto> userRewardDtos = new ArrayList<>();
         List<UserReward> userRewards = userRewardRepository.findAll();
@@ -42,9 +39,15 @@ public class UserRewardService {
     }
 
     public UserRewardDto createReward(UserReward userReward) {
-        final UserReward savedUserReward = userRewardRepository.save(userReward);
-        final UserRewardDto userRewardDto = fromReward(savedUserReward);
-        return userRewardDto;
+        Optional<UserReward> findUserRewardname = userRewardRepository.findUserRewardByUserProfileAndAndName(userReward.getUserProfile(), userReward.getName());
+
+        if (findUserRewardname.isPresent()) {
+            throw new IllegalStateException("Reward already exists");
+        } else {
+            final UserReward savedUserReward = userRewardRepository.save(userReward);
+            final UserRewardDto userRewardDto = fromReward(savedUserReward);
+            return userRewardDto;
+        }
     }
 
     public void deleteReward(Long rewardId) {
@@ -56,30 +59,12 @@ public class UserRewardService {
         userRewardRepository.deleteById(rewardId);
     }
 
-    public UserRewardDto updateReward(Long id, UserReward userReward) {
-        Optional<UserReward> rewardFound = userRewardRepository.findById(id);
-
-        if (!rewardFound.isPresent()) {
-            throw new RecordNotFoundException("UserReward not found");
-        } else {
-            UserReward newUserReward = rewardFound.get();
-            newUserReward.setName(userReward.getName());
-            newUserReward.setType(userReward.getType());
-            newUserReward.setDescription(userReward.getDescription());
-            newUserReward.setUserProfile(userReward.getUserProfile());
-
-            userRewardRepository.save(newUserReward);
-            return fromReward(newUserReward);
-        }
-    }
-
     public static UserRewardDto fromReward (UserReward userReward){
         var dto = new UserRewardDto();
         dto.setId(userReward.getId());
         dto.setName(userReward.getName());
         dto.setType(userReward.getType());
         dto.setDescription(userReward.getDescription());
-//        dto.setUserProfile(userReward.getUserProfile());
 
         return dto;
     }

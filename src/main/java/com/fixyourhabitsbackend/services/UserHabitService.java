@@ -4,7 +4,6 @@ import com.fixyourhabitsbackend.dtos.UserHabitDto;
 import com.fixyourhabitsbackend.exceptions.RecordNotFoundException;
 import com.fixyourhabitsbackend.models.UserHabit;
 import com.fixyourhabitsbackend.repositories.UserHabitRepository;
-import com.fixyourhabitsbackend.repositories.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +16,6 @@ public class UserHabitService {
 
     @Autowired
     private UserHabitRepository userHabitRepository;
-
-    @Autowired
-    private UserProfileRepository userProfileRepository;
 
     public List<UserHabitDto> getAllUserHabits() {
         List<UserHabitDto> userHabitDtos = new ArrayList<>();
