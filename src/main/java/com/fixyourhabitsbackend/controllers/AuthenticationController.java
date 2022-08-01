@@ -1,6 +1,10 @@
 package com.fixyourhabitsbackend.controllers;
 
-import com.fixyourhabitsbackend.security.*;
+import com.fixyourhabitsbackend.config.SpringSecurityConfig;
+import com.fixyourhabitsbackend.payload.AuthenticationRequest;
+import com.fixyourhabitsbackend.payload.AuthenticationResponse;
+import com.fixyourhabitsbackend.services.CustomUserDetailsService;
+import com.fixyourhabitsbackend.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

@@ -1,5 +1,7 @@
-package com.fixyourhabitsbackend.security;
+package com.fixyourhabitsbackend.filter;
 
+import com.fixyourhabitsbackend.services.CustomUserDetailsService;
+import com.fixyourhabitsbackend.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

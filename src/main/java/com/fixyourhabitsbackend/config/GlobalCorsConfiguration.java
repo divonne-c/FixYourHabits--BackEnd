@@ -1,4 +1,4 @@
-package com.fixyourhabitsbackend.security;
+package com.fixyourhabitsbackend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

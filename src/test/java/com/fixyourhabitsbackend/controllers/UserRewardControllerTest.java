@@ -1,8 +1,8 @@
 package com.fixyourhabitsbackend.controllers;
 
 import com.fixyourhabitsbackend.dtos.UserRewardDto;
-import com.fixyourhabitsbackend.security.CustomUserDetailsService;
-import com.fixyourhabitsbackend.security.JwtUtil;
+import com.fixyourhabitsbackend.services.CustomUserDetailsService;
+import com.fixyourhabitsbackend.utils.JwtUtil;
 import com.fixyourhabitsbackend.services.UserRewardService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

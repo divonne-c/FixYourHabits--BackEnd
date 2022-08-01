@@ -1,4 +1,4 @@
-package com.fixyourhabitsbackend.security;
+package com.fixyourhabitsbackend.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

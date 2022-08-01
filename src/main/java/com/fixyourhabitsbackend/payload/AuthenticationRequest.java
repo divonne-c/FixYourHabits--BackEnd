@@ -1,4 +1,4 @@
-package com.fixyourhabitsbackend.security;
+package com.fixyourhabitsbackend.payload;
 
 public class AuthenticationRequest {
 

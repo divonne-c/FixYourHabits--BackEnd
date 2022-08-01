@@ -1,6 +1,6 @@
 package com.fixyourhabitsbackend.security;
 
-import com.fixyourhabitsbackend.security.AuthenticationRequest;
+import com.fixyourhabitsbackend.payload.AuthenticationRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package com.fixyourhabitsbackend.security;
+package com.fixyourhabitsbackend.services;
 
 import com.fixyourhabitsbackend.dtos.UserDto;
 import com.fixyourhabitsbackend.models.Authority;
