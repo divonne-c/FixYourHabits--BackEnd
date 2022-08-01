@@ -8,11 +8,11 @@ INSERT INTO adminprofile (id, user_username) VALUES (100, 'admin');
 INSERT INTO authorities (username, authority) VALUES ('user', 'ROLE_USER');
 INSERT INTO authorities (username, authority) VALUES ('admin', 'ROLE_ADMIN');
 
--- INSERT INTO userhabits(id, completed, name, type, user_id)
--- VALUES (100, false, 'workout', 'sport', 100);
+INSERT INTO userhabits(id, completed, name, type, user_id)
+VALUES (100, false, 'workout', 'sport', 100);
 
--- INSERT INTO userrewards(id, description, name, type, user_id)
--- VALUES (100, 'Creating your first habit', 'habit-1', 'pink', 100);
+INSERT INTO userrewards(id, description, name, type, user_id)
+VALUES (100, 'Creating your first habit', 'habit-1', 'pink', 100);
 
 INSERT INTO adminrewards (id, name, description, type, admin_id)
 VALUES (100, 'habit-1', 'Creating your first habit', 'pink', 100),
